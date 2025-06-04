@@ -3,17 +3,38 @@ import 'dart:io';
 
 
 void main() {
+  int input = getUserInput();
+  Map<int, bool> primeList = generatePrimeList(input);
+  generatePrimes(primeList, input);
+  showPrimes(primeList);
+ 
+}
+
+int getUserInput() {
   // Benutzereingabe der Obergrenze für Primzahlen.
   stdout.write("Bitte gib eine Zahl als grenze ein : ");
   int input = int.parse(stdin.readLineSync()!);
+  return input;
+}
 
+Map<int, bool> generatePrimeList(int input) {
   /******************************************************
   ## Hier findet eine Optimierung (Speicher)
   ## Hier wird die effektive Listegröße errechnet 
   ## um die Geraden Zahlen nicht mit speichern zu müssen 
   *******************************************************/
-  int listSize = ((input - 3) ~/ 2) + 1;
+  int listSize = (input - 3) ~/ 2 + 1;
 
+  //Liste wird erstellt und befüllt.
+  Map<int, bool> primeList = {};
+  primeList[2] = true;
+  for(int i = 0; i < listSize; i++){
+    primeList[(i * 2) + 3] = true;
+  }
+  return primeList;
+}
+
+void generatePrimes(Map<int,bool> primeList, int input){
   /**************************************************************
   ## Hier wird eine weitere Optimierung angewendet (Last), damit 
   ## unnötige Schleifendurchläufe abgestellt werden. Wird 
@@ -22,13 +43,6 @@ void main() {
   ## um alle Zahl bis 100 gestrichen zu haben. 
   ***************************************************************/
   int sqrtInput = sqrt(input).toInt();
-
-  //Listen werden erstellt und vor befüllt
-
-  Map<int, bool> primeList = {};
-  for(int i = 0; i < listSize; i++){
-    primeList[(i * 2) + 3] = true;
-  }
   
   // Siebvorgang
   for (int i = 0; i < primeList.length; i++) {
@@ -59,10 +73,28 @@ void main() {
       }
     }
   }
+}
 
-  primeList.forEach((key, value){
+void showPrimes(Map<int, bool> primeList) {
+  int count = 0;
+   primeList.forEach((key, value){
     if(value == true){
-      print(key);
+      count++;
+      print("$count. =>  $key");
     };
   });
+}
+
+void showNoPrimes(Map<int, bool> primeList, int input) {
+  List<int> noPrimes = [];
+  for(int i = 0; i < input; i++) {
+    noPrimes.add(i+1);
+  }
+  
+  for(int i = 0; i < primeList.keys.toList().length; i++) {
+    if(primeList.values.toList()[i] == true){
+      noPrimes.remove(primeList.keys.toList()[i]);
+    }    
+  }
+  print(noPrimes);
 }
