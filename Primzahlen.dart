@@ -10,7 +10,7 @@ void main() {
   /******************************************************
   ## Hier findet eine Optimierung (Speicher)
   ## Hier wird die effektive Listegröße errechnet 
-  ## um die Geraden Zahlen nicht mit speichern zu mussen 
+  ## um die Geraden Zahlen nicht mit speichern zu müssen 
   *******************************************************/
   int listSize = ((input - 3) ~/ 2) + 1;
 
