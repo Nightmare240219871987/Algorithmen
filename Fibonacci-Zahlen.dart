@@ -4,6 +4,7 @@ import 'dart:io';
 // fib=fn-1 + fn-2
 void main() {
   List<int> fibNumbers = [];
+  stdout.write("Geben sie die anzahl der Fibunacci-Zahlen an : ");
   int? input = int.tryParse(stdin.readLineSync()!);
   int n1 = 1;
   int n2 = 1;
