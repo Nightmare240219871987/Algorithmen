@@ -1,14 +1,7 @@
-enum ApplicationStatus {
-    accepted,
-    rejected,
-    failed,
-}
-List<List<int>> listevon = [[]];
+
 void main() {
-  ApplicationStatus appStatus = ApplicationStatus.failed;
-  
-  if(appStatus == ApplicationStatus.failed)
-  {
-    print("fehler!");
-  }  
+  var a = (int item) => {item = item + 1};
+  var b =  a(4);
+
+  print(b);
 }

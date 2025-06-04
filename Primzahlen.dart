@@ -24,11 +24,16 @@ void main() {
   int sqrtInput = sqrt(input).toInt();
 
   //Listen werden erstellt und vor befüllt
-  List<bool> boolList = List.filled(listSize, true);
-  List<int> primesList = [2];
+  //List<bool> boolList = List.filled(listSize, true);
+  //List<int> primesList = [2];
+
+  Map<int, bool> primeList = {};
+  for(int i = 0; i < listSize; i++){
+    primeList[(i * 2) + 3] = true;
+  }
   
   // Siebvorgang
-  for (int i = 0; i < boolList.length; i++) {
+  for (int i = 0; i < primeList.length; i++) {
     // Echte Zahl wird zusammengebaut
     int p = i * 2 + 3;
 
@@ -38,7 +43,7 @@ void main() {
     }
 
     // Wenn aktuelle Zahl eine Primzahl ist.
-    if (boolList[i]) {
+    if (primeList[p] == true) {
       // Start-, und Zahl errechnen
       int start = p * p;
       int startIndex = (start - 3) ~/ 2;
@@ -51,18 +56,15 @@ void main() {
       ## an der Stelle des Schleifenindex auf False. Weil es keine 
       ## Primzahl sein kann.
       *********************************************************/
-      for (int j = startIndex; j < boolList.length; j += p) {
-        boolList[j] = false;
+      for (int j = startIndex; j < primeList.length; j += p) {
+        primeList[(j * 2) + 3] = false;
       }
     }
   }
 
-  // Zusammenstellung und Ausgabe der primesList.
-  for (int i = 0; i < boolList.length; i++) {
-    if (boolList[i]) {
-      primesList.add(i * 2 + 3);
-    }
-  }
-
-  print(primesList);
+  primeList.forEach((key, value){
+    if(value == true){
+      print(key);
+    };
+  });
 }
