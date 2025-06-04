@@ -20,7 +20,7 @@ void main() {
   }
 
   fibNumbers.addAll([1,1]);
-  for(int i = 0; i < (input!-2); i++){
+  for(int i = 0; i < (input-2); i++){
     fib = n1 + n2;
     fibNumbers.add(fib);
     n1 = n2; 
