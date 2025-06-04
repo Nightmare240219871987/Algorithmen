@@ -24,8 +24,6 @@ void main() {
   int sqrtInput = sqrt(input).toInt();
 
   //Listen werden erstellt und vor befüllt
-  //List<bool> boolList = List.filled(listSize, true);
-  //List<int> primesList = [2];
 
   Map<int, bool> primeList = {};
   for(int i = 0; i < listSize; i++){
